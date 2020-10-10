@@ -1,0 +1,30 @@
+/*
+1. You are given a number n and a number m separated by line-break representing the length and breadth of a n * m floor.
+2. You've an infinite supply of m * 1 tiles.
+3. You are required to calculate and print the number of ways floor can be tiled using tiles.
+*/
+
+#include<iostream>
+
+using namespace std;
+
+int main() {
+  int N, M;
+  cout<<"Enter the size of floor: ";
+  cin>>N>>M;
+
+  int dp[N+1];
+
+  for(int i=1; i<=N; i++) {
+    if(i < M)
+      dp[i] = 1;
+    else if(i == M)
+      dp[i] = 2;
+    else
+      dp[i] = dp[i-1] + dp[i-M];
+  }
+
+  cout<<dp[N];
+
+  return 0;
+}
