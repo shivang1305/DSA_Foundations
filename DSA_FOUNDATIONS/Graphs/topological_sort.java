@@ -8,7 +8,7 @@
     This is called topological sort. Check out the question video for details.
 
 Topological sort -> A permutation of vertices for a directed acyclic graph is called topological sort if 
-                    for all directed edges uv, u appears before v in the graph
+                    for all directed edges uv, u appears before v in the graph.
 
 */  
 
