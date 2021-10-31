@@ -29,16 +29,19 @@ public class all_paths {
    }
   }
 
-  public static void allPaths(ArrayList<Edge>[] graph, int src, int dest, boolean[] visited, String psf) {
+  // String psf = "";
+  // psf += src;
+
+  public static void allPaths(ArrayList<ArrayList<Integer>> graph, int src, int dest, boolean[] visited, String psf) {
     if(src == dest) { // base case
       System.out.println(psf);
       return;
     }
     
     visited[src] = true; // marking the visited vertex to avoid the viscious cycle
-    for(Edge edge : graph[src]) {
-        if(visited[edge.nbr] == false) {
-            allPaths(graph, edge.nbr, dest, visited, psf + edge.nbr); // recursive call
+    for(int e : graph.get(src)) {
+        if(visited[e] == false) {
+            allPaths(graph, e, dest, visited, psf + e); // recursive call
       }
     }
     visited[src] = false; // unmarking the vertex so that more paths can also be explored
