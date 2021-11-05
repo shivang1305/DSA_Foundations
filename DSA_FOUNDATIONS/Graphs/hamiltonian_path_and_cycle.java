@@ -48,35 +48,37 @@ public class hamiltonian_path_and_cycle {
         scn.close();
             
         HashSet<Integer> visited = new HashSet<>();
-        hamiltonianPathAndCycle(graph, src, visited, src + "", orignalSrc);
+        hamiltonianPathAndCycle(vtces, graph, src, visited, src + "", orignalSrc);
     }
 
     //DFS Algo
-    public static void hamiltonianPathAndCycle(ArrayList<Edge>[] graph, int src, HashSet<Integer> visited,      String psf, int orignalSrc) {
+    public static void hamiltonianPathAndCycle(int vtces, ArrayList<Edge>[] graph, int src, HashSet<Integer> visited, String psf, int orignalSrc) {
         // base case
         // since visited hashset is taking the values which we have visited before this one but psf is taking the value of vertex uptill now so that's why there is a gap of difference 1 between the comparing lengths
-        if(visited.size() == graph.length - 1) {
+        if(visited.size() == vtces) {
             System.out.print(psf);
             
             boolean isCycle = false;
             for(Edge e : graph[src]) {
                 if(e.nbr == orignalSrc)
-                isCycle = true;
+                    isCycle = true;
             }
             
             if(isCycle == true) 
-            System.out.println("*");
+                System.out.println("*");
             else
-            System.out.println(".");
-        }
+                System.out.println(".");
+        }   
         
-        visited.add(src);
-        for(Edge e : graph[src]) {
+        visited.add(src); // mark visited
+        for(Edge e : graph[src]) { // nbrs loop
             if(visited.contains(e.nbr) == false)
-            hamiltonianPathAndCycle(graph, e.nbr, visited, psf + e.nbr, orignalSrc);
+                hamiltonianPathAndCycle(vtces, graph, e.nbr, visited, psf + e.nbr, orignalSrc);
         }
         visited.remove(src);
     }
+
+    // DFS/ BFS : O(V + E) = O(n^2) 
 }
 
 
